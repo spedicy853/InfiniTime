@@ -212,4 +212,15 @@ void WatchFaceDigital::Refresh() {
     lv_obj_realign(stepValue);
     lv_obj_realign(stepIcon);
   }
+
+bluetooth_label: {
+                let lbl = label::create(screen, ptr::null()) ? ;
+                obj::set_width(     lbl, 50) ? ;
+                obj::set_height(    lbl, 80) ? ;
+                label::set_text(    lbl, strn!("")) ? ;  //  strn creates a null-terminated string
+                label::set_recolor( lbl, true) ? ;
+                label::set_align(   lbl, label::LV_LABEL_ALIGN_LEFT) ? ;
+                obj::align(         lbl, screen, obj::LV_ALIGN_IN_TOP_LEFT, 0, 0) ? ;
+                lbl  //  Return the label as bluetooth_label
+            }
 }
