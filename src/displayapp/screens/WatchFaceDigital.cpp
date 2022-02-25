@@ -46,12 +46,12 @@ WatchFaceDigital::WatchFaceDigital(DisplayApp* app,
   bleIcon = lv_label_create(lv_scr_act(), nullptr);
   lv_obj_set_style_local_text_color(bleIcon, LV_LABEL_PART_MAIN, LV_STATE_DEFAULT, lv_color_hex(0x0082FC));
   lv_label_set_text_static(bleIcon, Symbols::bluetooth);
-  lv_obj_align(bleIcon, batteryPlug, LV_ALIGN_OUT_LEFT_MID, -5, 0);
+  lv_obj_align(bleIcon, batteryPlug, LV_ALIGN_IN_TOP_LEFT, -5, 0);
 
   notificationIcon = lv_label_create(lv_scr_act(), nullptr);
   lv_obj_set_style_local_text_color(notificationIcon, LV_LABEL_PART_MAIN, LV_STATE_DEFAULT, lv_color_hex(0x00FF00));
   lv_label_set_text_static(notificationIcon, NotificationIcon::GetIcon(false));
-  lv_obj_align(notificationIcon, nullptr, LV_ALIGN_IN_TOP_LEFT, 0, 0);
+  lv_obj_align(notificationIcon, nullptr, LV_ALIGN_OUT_LEFT_MID, 0, 0);
 
   label_date = lv_label_create(lv_scr_act(), nullptr);
   lv_obj_align(label_date, lv_scr_act(), LV_ALIGN_CENTER, 0, 60);
@@ -212,15 +212,4 @@ void WatchFaceDigital::Refresh() {
     lv_obj_realign(stepValue);
     lv_obj_realign(stepIcon);
   }
-
-bluetooth_label: {
-                let lbl = label::create(screen, ptr::null()) ? ;
-                obj::set_width(     lbl, 50) ? ;
-                obj::set_height(    lbl, 80) ? ;
-                label::set_text(    lbl, strn!("")) ? ;  //  strn creates a null-terminated string
-                label::set_recolor( lbl, true) ? ;
-                label::set_align(   lbl, label::LV_LABEL_ALIGN_LEFT) ? ;
-                obj::align(         lbl, screen, obj::LV_ALIGN_IN_TOP_LEFT, 0, 0) ? ;
-                lbl  //  Return the label as bluetooth_label
-            }
 }
