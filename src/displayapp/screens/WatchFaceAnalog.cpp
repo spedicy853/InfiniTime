@@ -209,6 +209,16 @@ void WatchFaceAnalog::Refresh() {
       SetBatteryIcon();
     }
   }
+  bleState = bleController.IsConnected();
+  bleRadioEnabled = bleController.IsRadioEnabled();
+  if (bleState.IsUpdated() || bleRadioEnabled.IsUpdated()) {
+    lv_label_set_text(bleIcon, BleIcon::GetIcon(bleRadioEnabled.Get(), bleState.Get()));
+  }
+  lv_obj_realign(batteryIcon);
+  lv_obj_realign(batteryPlug);
+  lv_obj_realign(bleIcon);
+    }
+  }
 
   notificationState = notificationManager.AreNewNotificationsAvailable();
 
